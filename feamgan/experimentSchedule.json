@@ -1,0 +1,7 @@
+{
+  "mode": "sequential",
+  "experimentsToRun": ["InferenceExperiment"],
+  "experimentConfigsToRun": {"InferenceExperiment": [
+    "pretrainedModels/val/FeaMGAN_PFD_to_CS_Crop352_Full.json"
+    ]}
+}

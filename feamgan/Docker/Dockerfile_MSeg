@@ -1,0 +1,25 @@
+FROM pytorch/pytorch:1.7.0-cuda11.0-cudnn8-devel
+RUN apt-get update 
+RUN apt-get install git -y
+
+WORKDIR /workspace/unique_for_mseg_api
+RUN SHA=ToUcHMe git clone https://github.com/mseg-dataset/mseg-api.git
+RUN pip install -e /workspace/unique_for_mseg_api/mseg-api
+
+WORKDIR /tmp/unique_for_apex
+RUN SHA=ToUcHMe git clone https://github.com/NVIDIA/apex.git
+WORKDIR /tmp/unique_for_apex/apex
+RUN git reset --hard a651e2c24ecf97cbf367fd3f330df36760e1c597
+RUN pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" .
+
+WORKDIR /workspace/unique_for_mseg_semantic
+RUN SHA=ToUcHMe git clone https://github.com/mseg-dataset/mseg-semantic.git
+RUN pip install -e /workspace/unique_for_mseg_semantic/mseg-semantic
+WORKDIR /workspace
+
+RUN pip install termcolor==1.1.0
+RUN apt-get update && apt-get install -y libgtk2.0-dev
+RUN apt-get install -y libgl1-mesa-dev 
+Run pip install tqdm==4.46.0
+
+RUN git config --global --add safe.directory /root/feamgan

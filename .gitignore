@@ -1,0 +1,22 @@
+/**/.idea
+/**/.history
+/**/.ipynb_checkpoints
+/**/training_checkpoints
+/**/logs
+/**/data
+/**/results
+/**/random_results
+/**/experimentResults
+/**/inference
+/**/__pycache__
+*.pyc 
+*.log
+*.pt
+*.pth
+/**/.idea
+/**/.vscode
+/**/User Data
+/**/wandb
+*.npz
+*.csv
+*.ckpt

@@ -1,0 +1,107 @@
+{
+  "modelConfigs": [
+    {
+      "modelName":  "FeaMGAN_PFD_to_CS_Crop352_RandCrop_r2",
+      "seed": 42,
+      "modelClassName": "FeaMGAN",
+      "trainerName":  "ATrainer",
+      "isTrain": 1,
+      "augmentationsPipelineName": "DaliV2VAugmentationPipeline", 
+      "initializationType": "xavier",
+      "initializationVariance": 0.02,
+      "cudnn":{
+        "deterministic": 0,
+        "benchmark": 1
+      },
+      "pipeline":{
+        "daliUseCPU": 1,
+        "delayAllreduce": 1,
+        "ampOptLevel": "O0"
+      },
+      "optimization":{
+        "ganMode" : "hinge",
+        "lambdaGanFeat": 0,
+        "lambdaPerceptual": 1.0,
+        "optimizerType": "Adam",
+        "perceptualLossType": "vgg19",
+        "lambdaRealPenalty": 0.03,
+        "learningRateD": 0.0001,
+        "learningRateG": 0.0001,
+        "lrScheduler": {
+          "name": "stepLR",
+          "learningRateDecayStartingStep": 0,
+          "learningRateDecayAfterSteps": 57756
+        },  
+        "beta1": 0.9,
+        "beta2": 0.999,
+        "TTUR": 0,
+        "cDiscriminator": 1,
+        "useDiscriminatorMask": 1,
+        "useSimCropDis":1, 
+        "simCropDisMaxBatchSize": 32,
+        "cropFactorH":8,
+        "cropFactorW":8,
+        "simCropType":"random",
+        "simCropThreshold": 0.5,
+        "simCropHeight": 352,
+        "simCropWidth": 352
+      },
+      "generators":{
+        "backboneName": "FeaMGenerator",
+        "FeaMGenerator": { "nrFirstLayerFilters": 64,
+                        "modularization": "FATE",
+                        "normG": "spectralfadebatch3x3",
+                        "normS": "spectralinstance"
+                        }
+      },
+      "discriminators":{
+        "backboneName": "MultiscaleDiscriminator",
+        "MultiscaleDiscriminator": {"nrFirstLayerFilters": 64,
+                                "numD": 2,
+                                "netDSubarch": "FeaMDiscriminator",
+                                "normD":"spectralinstance"
+                                }
+      },
+      "verbose": 1,
+      "repeatTrainingSteps": [0],
+      "trainingSteps": -1,
+      "trainingEpochs": 20,
+      "evalSteps": 4813,
+      "evalEpochs": -1,
+      "saveCheckpointSteps": -1,
+      "saveCheckpointEpochs": 5,
+      "logSteps": 400,
+      "logEpochs": 1,
+      "saveSummarySteps": 400,
+      "saveSummaryEpochs": 1,
+      "batchSizes": {"pfd": 1},
+      "sequenceLengths": {"pfd": 1},
+      "doTraining":1,
+      "doInference":0,
+      "createVideoFromInference":0
+    }
+  ],
+
+  "datasetConfigs": [
+    {
+        "nameOfDataset": "pfd",
+        "valDatasetName": "val2000",
+        "steps": [1, 1],
+        "strides": [1, 1],
+        "datasetDirs": ["data/PFD/sequences", "data/Cityscapes/sequences"],
+        "datasetATypes": ["frames", "segmentations_mseg", "segmentations"],
+        "datasetBTypes": ["frames", "segmentations_mseg"],
+        "hasInstance": 0,
+        "augmentations":{
+          "preprocessMode": "scale_height_crop",
+          "dataLoadSize": 526,
+          "cropSize": [526,957],  
+          "inputDataShapeA": [3,526,957],
+          "inputDataShapeB": [3,526,957],
+          "aspectRatio": -1,
+          "flip": 1
+        }
+    }
+  ]
+  }
+
