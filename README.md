@@ -67,8 +67,7 @@ These segmentations are used by the discriminators.
    ```
 3. Download the ```mseg-3m.pth``` model [here](https://drive.google.com/file/d/1BeZt6QXLwVQJhOVd_NTnVTmtAO1zJYZ-/view). 
 4. Move the file ```mseg-3m.pth```  to the directory ```feamgan/models```. If the directory does not exist, create the directory.
-<br >
-<br >
+
 
 ## Prepare datasets
 We provide scripts to automatically extract and reformat the datasets we used in our experiments.  
