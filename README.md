@@ -1,6 +1,6 @@
 # Original Implementation of the Paper "Masked Discriminators for Content-Consistent Unpaired Image-to-Image Translation"
 This is the original implementation of the paper 
-[“Masked Discriminators for Content-Consistent Unpaired Image-to-Image Translation”](TODO: Paper Link).
+[“Masked Discriminators for Content-Consistent Unpaired Image-to-Image Translation”](https://arxiv.org/abs/2309.13188).
 
 This repository contains all the code used to create the paper, as well as links to results and weights:
 
