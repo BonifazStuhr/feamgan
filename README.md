@@ -6,8 +6,8 @@ This repository contains all the code used to create the paper, as well as links
 
 &emsp; :rocket: Links to inferred images of the validation set for easy comparison with our models<br/>
 &emsp; :crystal_ball: Links to the weights of our pretrained models<br/>
-&emsp; :microscope: Code and tutorial for configuring, training, validating, and inferring own models<br/>
-&emsp; :scroll: Code and tutorial for inferring with our pretrained models<br/>
+&emsp; :microscope: Code and tutorial for configuring, training, and validating own models<br/>
+&emsp; :scroll: Code and tutorial for inference with our pretrained models<br/>
 
 ![alt text](resources/FeaMGAN_results.png "Results of different translation tasks")
 
