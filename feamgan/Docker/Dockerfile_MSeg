@@ -14,8 +14,10 @@ RUN git reset --hard a651e2c24ecf97cbf367fd3f330df36760e1c597
 RUN pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" .
 
 WORKDIR /workspace/unique_for_mseg_semantic
+ENV SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True
 RUN SHA=ToUcHMe git clone https://github.com/mseg-dataset/mseg-semantic.git
 RUN pip install -e /workspace/unique_for_mseg_semantic/mseg-semantic
+ENV SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=False
 WORKDIR /workspace
 
 RUN pip install termcolor==1.1.0
