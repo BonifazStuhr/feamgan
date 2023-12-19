@@ -55,16 +55,16 @@ class ATrainer(ITrainer):
                 opt.step() if loss_is_valid else opt.zero_grad()
                 self.loss_index+=1
                 
-        return losses, pred 
+        return losses, pred
 
     def generator(self, data, model):
-        
+
         if self.mode == "train":
             generator_opts = model.module.getGeneratorOptimizers()
             discriminators = model.module.getDiscriminators()
             generators = model.module.getGenerators()
-            for dis in discriminators: 
-                for d in dis :self.toggleGrad(d, True)
+            for dis in discriminators:
+                for d in dis :self.toggleGrad(d, False)
             for gen in generators: self.toggleGrad(gen, True)
 
             for opt in generator_opts: opt.zero_grad()
